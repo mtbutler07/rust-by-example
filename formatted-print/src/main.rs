@@ -78,33 +78,4 @@ fn main() {
 
     println!("{}", sep);
 
-    /*
-     * All types which want to use std::fmt formatting traits require an implementation to be
-     * printable. Automatic implementations are only provided for types such as in the std library.
-     * All others must be manually implemented somehow.
-     *
-     * The fmt::Debug trait makes this very straightforward. All types can derive (automatically create)
-     * the fmt::Debug implementation. This is not true for fmt::Display which must be manually implemented.
-     */
-
-    // The following structure can not be printed with fmt::Display or fmt::Debug automatically.
-    // For debug printing, we just use the `derive` attribute to make the struct printable using fmt::Debug `{:?}`
-    #[derive(Debug)]
-    struct Structure(i32);
-
-    println!("{:?}", Structure(3));
-
-    // Derive the fmt::Debug implementation for the struct
-    #[derive(Debug)]
-    struct Person<'a> {
-        name: &'a str,
-        age: u8,
-    }
-
-    let name = "Marcus";
-    let age = 27;
-    let marcus = Person { name, age };
-
-    // Pretty print using #
-    println!("{:#?}", marcus);
 }

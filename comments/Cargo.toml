@@ -1,5 +1,5 @@
 [package]
-name = "1-hello-rust"
+name = "comments"
 version = "0.1.0"
 authors = ["Marcus Butler <mtbutler07@gmail.com>"]
 edition = "2018"
