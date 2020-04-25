@@ -1,3 +1,11 @@
+use std::mem;
+
+
+fn analyze_slice(slice: &[i32]) {
+    println!("The first element of the slice {}",slice[0]);
+    println!("The slice has {} elements",slice.len());
+}
+
 fn reverse(pair: (i32, bool))-> (bool, i32) {
 
     // let can be used to bind the members of the tuple to variables
@@ -118,5 +126,43 @@ fn main() {
 
     let matrix = Matrix(1.1, 1.2, 2.1, 2.2);
     println!("{:?}", matrix);
+
+    /*
+    * Arrays are collections of values of the same type T.
+    * - Constructed using []
+    * - Their size is known at compile time
+    * - Array type signature [T; size]
+    *
+    * Slices are similar to arrays but their size is not know at compile time.
+    * - A slice is a two-word object, the first word is a pointer to the data, 
+    *   and the second is the length of the slice.
+    * - Slices can be used to borrow a section of an array.
+    * - Slice type signature &[T]
+    *
+    */
+
+    // Fixed sized array of i32
+    let xs: [i32; 5] = [1, 2, 3, 4, 5];
+
+    // All elements can be initialized to the same value
+    let ys: [i32; 500] = [0; 500];
     
+    // Print value by index
+    println!("first element of the array: {}", xs[0]);
+    println!("second element of the array: {}", xs[1]);
+
+    // Print the size of the array
+    println!("array size: {}", xs.len());
+
+    // Arrays are allocated memory from the stack
+    println!("Occupied {} bytes of memory", mem::size_of_val(&xs));
+
+    // Arrays can be automatically borrowed as slices
+    println!("borrow the whole array as a slice");
+    analyze_slice(&xs);
+
+    // slices can point to a section of an array
+    // [start_index..end_index]
+    println!("borrow part of the array as a slice");
+    analyze_slice(&ys[1..4]);
 }
