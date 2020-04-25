@@ -83,5 +83,65 @@ fn main() {
 
     let coordinates = Point2D{x:7.34588, y:9.2};
 
-    println!("{}",coordinates);
+    println!("Coordinates -> {}",coordinates);
+
+    /*
+    * Implementing fmt::Display for a structure where the elements must each be handled sequentially
+    * is trick. The problem is that each write! generates a fmt::Result. Proper handling of this requires
+    * dealing with all the results. Rust provides the ? operator for exactly this purpose.
+    */
+
+    // Define a structure named List containing a vec (Vector) of i32
+    struct List(Vec<i32>);
+    struct IndexList(Vec<i32>);
+
+    impl fmt::Display for List {
+        fn fmt(&self, f: &mut fmt::Formatter)-> fmt::Result {
+            // Extract the value using tuple indexing and create a reference to vec
+            let vec = &self.0;
+            
+            // print the starting bracket
+            write!(f, "[")?;
+
+            // Iterate over the item in vec while enumerating the iteration count in count
+            for (count, item) in vec.iter().enumerate() {
+                // for every element, add a comma except for the first.
+                if count !=0 { write!(f, ", ")?; }
+
+                write!(f, "{}", item)?;
+
+            }
+
+            // print the closing bracket and return the final value
+            write!(f, "]")
+        }
+    }
+
+    impl fmt::Display for IndexList {
+        fn fmt(&self, f: &mut fmt::Formatter)-> fmt::Result {
+            // Extract the value using tuple indexing and create a reference to vec
+            let vec = &self.0;
+            
+            // print the starting bracket
+            write!(f, "[")?;
+
+            // Iterate over the item in vec while enumerating the iteration count in count
+            for (count, item) in vec.iter().enumerate() {
+                // for every element, add a comma except for the first.
+                if count !=0 { write!(f, ", ")?; }
+
+                write!(f, "{0}: {1}", count, item)?;
+
+            }
+
+            // print the closing bracket and return the final value
+            write!(f, "]")
+        }
+    }
+
+    let list = List(vec![1, 4, 9, 10]);
+    let i_list = IndexList(vec![1, 4, 9, 10]);
+
+    println!("List -> {}", list);
+    println!("Index List -> {}", i_list);
 }
