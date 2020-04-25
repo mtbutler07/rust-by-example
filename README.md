@@ -9,3 +9,4 @@ Following the sections and exercises from [Rust By Example](https://doc.rust-lan
 3. [Comments](comments/src/main.rs)
 4. [Formatted Print](formatted-print/src/main.rs)
 5. [Struct Formatted Print](struct-formatted-print/src/main.rs)
+6. [Primitives](primitives/src/main.rs)
