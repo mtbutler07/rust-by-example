@@ -1,3 +1,15 @@
+fn reverse(pair: (i32, bool))-> (bool, i32) {
+
+    // let can be used to bind the members of the tuple to variables
+    let (integer, boolean) = pair;
+
+    return (boolean, integer);
+}
+
+#[derive(Debug)]
+struct Matrix(f32, f32, f32, f32);
+
+
 fn main() {
     
     /*
@@ -76,4 +88,35 @@ fn main() {
     println!("0011 XOR 0101 is {:04b}", 0b0011u32 ^ 0b0101);
     println!("1 << 5 is {}", 1u32 << 5);
     println!("0x80 >> 2 is 0x{:x}", 0x80u32 >> 2);
+
+
+    /*
+    * Tuples are collections of values of different types.
+    * - Constructed using ()
+    * - Each tuple itself is a value with a type signature (T1, T2, ...) 
+    *   where T1 and T2 are the types of it's members.
+    * - Functions can use tuples to return multiple values
+    */
+
+    
+    let long_tuple = (1u8, 2u16, 4u64, true, false, "marcus", 0.2f64);
+
+    // Extract values from tuples by index
+    println!("First Value {}",long_tuple.0);
+    println!("Second Value Value {}",long_tuple.1);
+
+
+    // Tuples can be tuple members
+    let tuple_ception = ((1u8, 2u16, 2u32), (4u64, -1i8), -2i16);
+
+    println!("Tuple of Tuples {:?}", tuple_ception);
+
+    let pair = (1, true);
+
+    println!("Pair is {:?}", pair);
+    println!("Reverse Pair is {:?}", reverse(pair));
+
+    let matrix = Matrix(1.1, 1.2, 2.1, 2.2);
+    println!("{:?}", matrix);
+    
 }
