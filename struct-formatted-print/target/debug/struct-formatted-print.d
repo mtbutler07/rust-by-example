@@ -1,1 +1,0 @@
-/mnt/c/Users/Marcus/Google\ Drive/projects/rust-by-example/struct-formatted-print/target/debug/struct-formatted-print: /mnt/c/Users/Marcus/Google\ Drive/projects/rust-by-example/struct-formatted-print/src/main.rs
